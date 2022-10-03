@@ -1,0 +1,103 @@
+{
+    "openapi":"3.0.3",
+    "info":{
+        "title"       :"TeClean",
+        "version"     :"1.0.0",
+        "description" :"a Text Cleaning API",
+        "contact"     :{
+            "name"  :"Avissa Putri",
+            "email" :"avissaaputri@gmail.com"
+        },
+        "license":{
+            "name"  :"APACHE 2.0",
+            "url"   :"https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+
+    "servers":[
+        {
+            "description"   : "'TeClean' RESTful API Server",
+            "url"           : "/"
+        }
+    ],
+   
+    "paths" :{
+        "/data":{
+            "post":{
+                "summary"       : "Post a text to form",
+                "description"   : "Post a text file to cleanse",
+                "requestBody"   : {
+                    "required"  : true,
+                    "content"   : {
+                        "multipart/form-data":{
+                            "schema":{
+                                "type"      :"object",
+                                "properties":{
+                                    "text":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Success"
+                    },
+                    "400":{
+                        "description":"Misunderstood"
+                    },
+                    "401":{
+                        "description":"Unauthorised"
+                    },
+                    "404":{
+                        "description":"Not Found"
+                    },
+                    "500":{
+                        "description":"Server Error"
+                    }
+                }
+            }
+        },
+        "/data/csv":{
+            "post":{
+                "summary"       :"Post csv file",
+                "description"   :"Post csv file to cleanse",
+                "requestBody"   :{
+                    "required"  :true,
+                    "content"   :{
+                        "multipart/form-data":{
+                            "schema":{
+                                "type"      :"object",
+                                "properties":{
+                                    "file":{
+                                        "type"  :"string",
+                                        "format":"base64"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Success"
+                    },
+                    "400":{
+                        "description":"Misunderstood"
+                    },
+                    "401":{
+                        "description":"Unauthorised"
+                    },
+                    "404":{
+                        "description":"Not Found"
+                    },
+                    "500":{
+                        "description":"Server Error"
+                    }
+                }
+            }
+        }
+    }
+}
